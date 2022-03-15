@@ -104,10 +104,63 @@ const detectCombinations = (input, output, position, path) => {
   }
 };
 
+/**
+ * maxCount means longest word to find first
+ */
+export const findWords2 = (huruf, maxCount, onResult) => {
+  var tokens = [];
+  var outputArr = [];
+  var result = [[]];
+  fetch(words)
+    .then((r) => r.text())
+    .then((text) => {
+      tokens = text.split("\n");
+    })
+    .then(() => {
+      var st = 0;
+      var en = maxCount - 1;
+      var count = 0;
+      while (en < huruf.length) {
+        console.log("st", st);
+        console.log("en", en);
+        const slice = huruf.slice(st, en + 1);
+        var currentSliceAiqgh = [];
+        slice.forEach((adad) => {
+          currentSliceAiqgh.push(AIQGH[adad - 1]);
+        });
+        detectCombinations(currentSliceAiqgh, outputArr);
+        outputArr.forEach((element) => {
+          checkWordInTokens(element, tokens, (wordFound) => {
+            if (wordFound) {
+              console.log("worddfound", wordFound);
+              result[count].push({ value: wordFound, label: wordFound });
+            }
+          });
+        });
+        if (result[count].length == 0 && en > 0) {
+          en--;
+        } else {
+          if (en == huruf.length - 1) {
+            break;
+          }
+
+          st = en + 1;
+          en = en + maxCount;
+          if (en >= huruf.length) {
+            en = huruf.length - 1;
+          }
+          count++;
+          result[count] = [];
+          outputArr = [];
+        }
+      }
+    })
+    .finally(() => {
+      onResult(result);
+    });
+};
+
 export const findWords = (huruf, length, balanced, onResult) => {
-  console.log("huruf", huruf);
-  console.log("length", length);
-  console.log("balanced", balanced);
   var outputArr = [];
   var result = [[]];
   var tokens = [];

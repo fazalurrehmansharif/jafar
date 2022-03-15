@@ -1,5 +1,5 @@
 import Satar from "components/Satar";
-import { findWords } from "engines/azaaf";
+import { findWords, findWords2 } from "engines/azaaf";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { performMS1, performMS2, performQeemat } from "state/azaafSlice";
@@ -56,8 +56,12 @@ const Mustehsila = () => {
         <button
           // @ts-ignore
           onClick={(e) =>
-            findWords(muakharSadar2, chunkLength, false, (result) => {
-              setResults([[]]);
+            // findWords(muakharSadar2, chunkLength, false, (result) => {
+            //   setResults([[]]);
+            //   setResults(result);
+            // })
+            findWords2(muakharSadar2, chunkLength, (result) => {
+              // setResults([[]]);
               setResults(result);
             })
           }
@@ -69,7 +73,7 @@ const Mustehsila = () => {
         <select
           name="chunklength"
           id="chunklength"
-          defaultValue={1}
+          defaultValue={7}
           onChange={(e) => {
             chunkLength = parseInt(e.target.value);
           }}
@@ -79,6 +83,8 @@ const Mustehsila = () => {
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
         </select>
       </div>
       <div className="result-holder">
