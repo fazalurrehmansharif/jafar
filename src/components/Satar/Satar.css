@@ -1,0 +1,25 @@
+.satar {
+  display: grid;
+  grid-template-columns: 200px repeat(28, 40px);
+  border: 2px solid black;
+  direction: rtl;
+}
+
+.satar-sawal {
+  display: grid;
+  grid-template-columns: 200px 1116px;
+  justify-content: start;
+  direction: rtl;
+}
+
+.satar-name {
+  font-size: 40px;
+  font-weight: bold;
+  width: 100%;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border: 1px solid black;
+  background: gray;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,14 @@
+.mustehsila-body {
+  width: fit-content;
+  direction: rtl;
+}
+
+.react-select {
+  width: fit-content;
+  align-self: flex-start;
+  font-size: xx-large;
+}
+
+.result-holder {
+  display: flex;
+}

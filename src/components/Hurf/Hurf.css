@@ -1,0 +1,8 @@
+.hurf {
+  font-size: 30px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+}

@@ -1,14 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from "App";
+import React from "react";
+import ReactDOM from "react-dom";
+import {
+  createDispatchHook,
+  createSelectorHook,
+  createStoreHook,
+  Provider,
+} from "react-redux";
+import { createStore } from "redux";
+import azaafSlice from "state/azaafSlice";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+
+const myStore = createStore(azaafSlice);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <Provider store={myStore}>
+    <App></App>
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
