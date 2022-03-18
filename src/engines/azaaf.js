@@ -121,8 +121,6 @@ export const findWords2 = (huruf, maxCount, onResult) => {
       var en = maxCount - 1;
       var count = 0;
       while (en < huruf.length) {
-        console.log("st", st);
-        console.log("en", en);
         const slice = huruf.slice(st, en + 1);
         var currentSliceAiqgh = [];
         slice.forEach((adad) => {
@@ -132,7 +130,6 @@ export const findWords2 = (huruf, maxCount, onResult) => {
         outputArr.forEach((element) => {
           checkWordInTokens(element, tokens, (wordFound) => {
             if (wordFound) {
-              console.log("worddfound", wordFound);
               result[count].push({ value: wordFound, label: wordFound });
             }
           });
@@ -179,9 +176,6 @@ export const findWords = (huruf, length, balanced, onResult) => {
         });
         detectCombinations(currentChunkAiqgh, outputArr);
         outputArr.forEach((element) => {
-          // if (tokens.includes(element)) {
-          //   result[count].push({ value: element, label: element });
-          // }
           checkWordInTokens(element, tokens, (wordFound) => {
             if (wordFound) {
               result[count].push({ value: wordFound, label: wordFound });

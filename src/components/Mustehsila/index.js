@@ -2,6 +2,7 @@ import Satar from "components/Satar";
 import { findWords, findWords2 } from "engines/azaaf";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import cheerio from "cheerio";
 import {
   performMS1,
   performMS2,
@@ -10,6 +11,7 @@ import {
 } from "state/azaafSlice";
 import Select from "react-select";
 import "./Mustehsila.css";
+import axios from "axios";
 
 const Mustehsila = () => {
   // @ts-ignore
@@ -17,10 +19,11 @@ const Mustehsila = () => {
     (state) => state
   );
   // @ts-ignore
-  var chunkLength = 7;
+  var chunkLength = 3;
   const dispatch = useDispatch();
 
   const [results, setResults] = useState([[]]);
+  const translationMap = new Map();
 
   useEffect(() => {
     dispatch(performQeemat(huruf));
@@ -33,6 +36,25 @@ const Mustehsila = () => {
   useEffect(() => {
     dispatch(performMS2(muakharSadar1));
   }, [muakharSadar1]);
+
+  const getDataFromUrl = (word) => {
+    if (translationMap.has(word)) {
+      console.log(translationMap.get(word));
+    } else {
+      axios
+        .get(
+          `https://cors-anywhere.herokuapp.com/http://udb.gov.pk/result.php?search=` +
+            word
+        )
+        .then((res) => {
+          const $ = cheerio.load(res.data);
+          const data = $(".para");
+          const translations = data.text().split(" ، ");
+          translationMap.set(word, translations);
+          console.log(translations);
+        });
+    }
+  };
 
   return (
     <div className="mustehsila-body">
@@ -79,7 +101,7 @@ const Mustehsila = () => {
         <select
           name="chunklength"
           id="chunklength"
-          defaultValue={7}
+          defaultValue={3}
           onChange={(e) => {
             chunkLength = parseInt(e.target.value);
           }}
@@ -101,6 +123,9 @@ const Mustehsila = () => {
               options={value}
               key={JSON.stringify(value)}
               defaultValue={{ label: "Select Word", value: 0 }}
+              onChange={(e) => {
+                getDataFromUrl(e.value);
+              }}
             />
           );
         })}
