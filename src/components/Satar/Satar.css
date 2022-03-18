@@ -7,7 +7,7 @@
 
 .satar-sawal {
   display: grid;
-  grid-template-columns: 200px 1116px;
+  grid-template-columns: 200px 100%;
   justify-content: start;
   direction: rtl;
 }
