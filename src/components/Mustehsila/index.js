@@ -2,13 +2,18 @@
 import Satar from "components/Satar";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { checkIfTranslationExist, reviver } from "../../engines/azaaf";
+import {
+  checkIfTranslationExist,
+  putExistingToLast,
+  reviver,
+} from "../../engines/azaaf";
 import cheerio from "cheerio";
 import {
   performMS1,
   performMS2,
   performQeemat,
   updateTranslations,
+  resetTranslations,
 } from "state/azaafSlice";
 import Select from "react-select";
 import "./Mustehsila.css";
@@ -36,24 +41,28 @@ const Mustehsila = () => {
 
   const notify = (error) => toast(error.message);
 
-  const getDataFromUrl = (wordx) => {
+  const getDataFromUrl = (wordx, index) => {
     if (!checkIfTranslationExist(wordx, translations)) {
       axios
-        .get(
-          `https://cors-anywhere.herokuapp.com/http://udb.gov.pk/result.php?search=` +
-            wordx
-        )
+        .get(`http://localhost:8010/proxy` + `?search=` + wordx)
         .then((res) => {
           const $ = cheerio.load(res.data);
           const data = $(".para");
           const translations = data.text().split(" ، ");
           dispatch(
-            updateTranslations({ word: wordx, translation: translations })
+            updateTranslations({
+              word: wordx,
+              translation: translations,
+              index: index,
+            })
           );
         })
         .catch((error) => {
           notify(error);
         });
+    } else {
+      const swappedTranslations = putExistingToLast(wordx, translations);
+      dispatch(resetTranslations(swappedTranslations));
     }
   };
 
@@ -89,7 +98,7 @@ const Mustehsila = () => {
               key={JSON.stringify(value)}
               defaultValue={{ label: "Select Word", value: 0 }}
               onChange={(e) => {
-                getDataFromUrl(e.value);
+                getDataFromUrl(e.value, index);
               }}
             />
           );

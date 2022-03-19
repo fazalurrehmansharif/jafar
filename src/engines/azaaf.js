@@ -311,3 +311,33 @@ export function checkIfTranslationExist(word, translations) {
   }
   return false;
 }
+
+export function putExistingToLast(word, translations) {
+  var arrayForSort = [...translations];
+  for (let index = 0; index < translations.length; index++) {
+    var element = translations[index];
+    if (element.word === word) {
+      const tmp = translations[translations.length - 1];
+      arrayForSort.splice(index, 1);
+      arrayForSort.push(translations[index]);
+      break;
+    }
+  }
+  return arrayForSort;
+}
+
+export function getOnSameIndex(values) {
+  var newValues = [];
+  for (let i = 0; i < values.length; i++) {
+    var withSameIndex = [];
+    values.forEach((element) => {
+      if (element.index === i) {
+        withSameIndex.push(element);
+      }
+    });
+    if (withSameIndex.length > 0) {
+      newValues.push(withSameIndex.pop());
+    }
+  }
+  return newValues;
+}

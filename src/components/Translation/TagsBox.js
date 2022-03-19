@@ -5,7 +5,7 @@ const TagsBox = (props) => {
   const { values } = props;
   return (
     <div className="tags-box-container">
-      <p className="tags-box-title">ترجمہ</p>
+      <p className="tags-box-title">{values.word}</p>
       <div className="tags-container">
         {values.translation.map((value, index) => {
           return (

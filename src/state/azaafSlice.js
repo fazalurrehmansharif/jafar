@@ -39,6 +39,9 @@ export const azaafSlice = createSlice({
     updateTranslations(state, action) {
       state.translations.push(action.payload);
     },
+    resetTranslations(state, action) {
+      state.translations = action.payload;
+    },
   },
 });
 
@@ -53,6 +56,7 @@ export const {
   setChunkLength,
   setResults,
   updateTranslations,
+  resetTranslations,
 } = azaafSlice.actions;
 
 export default azaafSlice.reducer;
