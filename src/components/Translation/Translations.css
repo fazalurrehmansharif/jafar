@@ -39,7 +39,7 @@
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  height: 440px;
+  height: 100%;
   width: 500px;
   border-left: 1px solid black;
 }

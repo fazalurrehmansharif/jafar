@@ -6,7 +6,12 @@ import LoadingOverlay from "react-loading-overlay";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 // @ts-ignore
-import { setLoading, setChunkLength, setResults } from "state/azaafSlice";
+import {
+  setLoading,
+  setChunkLength,
+  setResults,
+  resetTranslations,
+} from "state/azaafSlice";
 import "./App.css";
 
 function App() {
@@ -49,6 +54,7 @@ function App() {
               onClick={(e) => {
                 dispatch(setLoading());
                 findWords2(muakharSadar2, chunkLength, (result) => {
+                  dispatch(resetTranslations([]));
                   dispatch(setResults(result));
                   dispatch(setLoading());
                 });
