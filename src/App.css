@@ -1,4 +1,91 @@
 .App {
+  display: grid;
+  justify-content: start;
+  grid-template-columns: 100%;
+  grid-template-rows: 100px 100%;
+  direction: rtl;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.translations-container {
+  height: 500px;
+  background-image: linear-gradient(to top, rgb(155, 155, 155), #000);
+}
+
+nav {
+  background-image: linear-gradient(to right, #000, rgb(155, 155, 155), #000);
+  direction: rtl;
   display: flex;
-  justify-content: end;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  color: aliceblue;
+  font-size: 50px;
+  font-weight: normal;
+  font-family: noori-kashida;
+  margin-right: 50px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.chunk-title {
+  color: aliceblue;
+  font-size: 40px;
+  font-weight: normal;
+  font-family: noori-kashida;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#chunk-selector {
+  align-self: center;
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.options-container {
+  display: flex;
+  border-radius: 10px;
+  padding: 10px 15px;
+  background-image: linear-gradient(
+    to top,
+    rgba(155, 155, 155, 0.301),
+    rgb(34, 34, 34)
+  );
+}
+
+.jawab-button {
+  font-size: 50px;
+  font-weight: normal;
+  font-family: noori;
+  width: 150px;
+  height: 70px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 15px;
+  justify-content: center;
+  border-radius: 10px;
+  text-shadow: 0 0 10px rgb(24, 1, 1);
+  color: rgb(241, 239, 201);
+  background-image: linear-gradient(
+    to top,
+    rgb(57, 78, 57),
+    rgb(109, 204, 106)
+  );
+}
+
+.jawab-button:active {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(57, 78, 57),
+    rgb(109, 204, 106)
+  );
+  text-shadow: 0 0 0px rgb(24, 1, 1);
+  color: #000;
 }

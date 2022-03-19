@@ -10,6 +10,8 @@ export const azaafSlice = createSlice({
     qeemat: [],
     muakharSadar1: [],
     muakharSadar2: [],
+    chunkLength: 3,
+    results: [[]],
   },
   reducers: {
     setLoading(state, action) {
@@ -27,6 +29,12 @@ export const azaafSlice = createSlice({
     performMS2(state, action) {
       state.muakharSadar2 = muakharSadar(action.payload);
     },
+    setChunkLength(state, length) {
+      state.chunkLength = length.payload;
+    },
+    setResults(state, results) {
+      state.results = results.payload;
+    },
   },
 });
 
@@ -38,6 +46,8 @@ export const {
   performMS1,
   performMS2,
   setLoading,
+  setChunkLength,
+  setResults,
 } = azaafSlice.actions;
 
 export default azaafSlice.reducer;

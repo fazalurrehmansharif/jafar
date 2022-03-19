@@ -10,8 +10,8 @@ const Satar = (props) => {
 
   if (isSawal) {
     return (
-      <div className="satar-sawal">
-        <div className="satar-name">سوال</div>
+      <div className="satar">
+        <div className="satar-name">یا علیم</div>
         <Sawal></Sawal>
       </div>
     );
@@ -23,7 +23,7 @@ const Satar = (props) => {
     return (
       <div className="satar">
         <div className="satar-name">{satarName}</div>
-        {hurufboxes}
+        <div className="satar-body">{hurufboxes}</div>
       </div>
     );
   } else {

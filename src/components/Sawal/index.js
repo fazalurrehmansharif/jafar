@@ -12,7 +12,7 @@ const Sawal = (props) => {
   return (
     <input
       type="text"
-      className="sawal"
+      className="sawal-body"
       onChange={(e) => {
         dispatch(performKhalis(bastHurfi(e.target.value)));
       }}

@@ -1,25 +1,18 @@
 .satar {
-  display: grid;
-  grid-template-columns: 200px repeat(28, 40px);
-  border: 2px solid black;
+  display: flex;
   direction: rtl;
+  margin-left: 10px;
 }
 
-.satar-sawal {
-  display: grid;
-  grid-template-columns: 200px 100%;
-  justify-content: start;
-  direction: rtl;
+.satar-body {
+  display: flex;
+  width: 100%;
 }
 
 .satar-name {
   font-size: 40px;
-  font-weight: bold;
-  width: 100%;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  border: 1px solid black;
-  background: gray;
-  display: flex;
-  justify-content: center;
+  width: 130px;
+  font-family: noori;
+  padding-right: 20px;
+  align-self: center;
 }

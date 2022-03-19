@@ -15,14 +15,12 @@ import axios from "axios";
 
 const Mustehsila = () => {
   // @ts-ignore
-  const { huruf, qeemat, muakharSadar1, muakharSadar2 } = useSelector(
+  const { huruf, qeemat, muakharSadar1, muakharSadar2, results } = useSelector(
     (state) => state
   );
   // @ts-ignore
-  var chunkLength = 3;
   const dispatch = useDispatch();
 
-  const [results, setResults] = useState([[]]);
   const translationMap = new Map();
 
   useEffect(() => {
@@ -79,42 +77,6 @@ const Mustehsila = () => {
         huruf={muakharSadar2 ? muakharSadar2 : ""}
         satarName="موخر صدر "
       ></Satar>
-      <div>
-        <button
-          // @ts-ignore
-          onClick={(e) => {
-            // findWords(muakharSadar2, chunkLength, false, (result) => {
-            //   setResults([[]]);
-            //   setResults(result);
-            // })
-            dispatch(setLoading());
-            findWords2(muakharSadar2, chunkLength, (result) => {
-              setResults(result);
-              dispatch(setLoading());
-            });
-          }}
-        >
-          FIND ANSWER
-        </button>
-        <span>{"    "}</span>
-        <label>Search Length</label>
-        <select
-          name="chunklength"
-          id="chunklength"
-          defaultValue={3}
-          onChange={(e) => {
-            chunkLength = parseInt(e.target.value);
-          }}
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-        </select>
-      </div>
       <div className="result-holder">
         {results.map((value, index) => {
           return (
