@@ -1,24 +1,18 @@
+// @ts-nocheck
 import Satar from "components/Satar";
-import { findWords, findWords2 } from "engines/azaaf";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cheerio from "cheerio";
-import {
-  performMS1,
-  performMS2,
-  performQeemat,
-  setLoading,
-} from "state/azaafSlice";
+import { performMS1, performMS2, performQeemat } from "state/azaafSlice";
 import Select from "react-select";
 import "./Mustehsila.css";
 import axios from "axios";
 
 const Mustehsila = () => {
-  // @ts-ignore
   const { huruf, qeemat, muakharSadar1, muakharSadar2, results } = useSelector(
     (state) => state
   );
-  // @ts-ignore
+
   const dispatch = useDispatch();
 
   const translationMap = new Map();

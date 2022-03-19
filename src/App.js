@@ -1,4 +1,5 @@
 import Mustehsila from "components/Mustehsila";
+import Translations from "components/Translation";
 import { findWords2 } from "engines/azaaf";
 import React from "react";
 import LoadingOverlay from "react-loading-overlay";
@@ -58,8 +59,10 @@ function App() {
           </div>
         </nav>
         <Mustehsila></Mustehsila>
+        <div className="translations-container">
+          <Translations></Translations>
+        </div>
       </div>
-      <div className="translations-container"></div>
     </LoadingOverlay>
   );
 }
