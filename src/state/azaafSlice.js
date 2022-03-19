@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 // @ts-ignore
-import { khalis, muakharSadar, qeemat } from "engines/azaaf";
+import { khalis, muakharSadar, qeemat, replacer } from "engines/azaaf";
 
 export const azaafSlice = createSlice({
   name: "azaaf",
@@ -12,6 +12,7 @@ export const azaafSlice = createSlice({
     muakharSadar2: [],
     chunkLength: 3,
     results: [[]],
+    translations: [],
   },
   reducers: {
     setLoading(state, action) {
@@ -35,6 +36,9 @@ export const azaafSlice = createSlice({
     setResults(state, results) {
       state.results = results.payload;
     },
+    updateTranslations(state, action) {
+      state.translations.push(action.payload);
+    },
   },
 });
 
@@ -48,6 +52,7 @@ export const {
   setLoading,
   setChunkLength,
   setResults,
+  updateTranslations,
 } = azaafSlice.actions;
 
 export default azaafSlice.reducer;

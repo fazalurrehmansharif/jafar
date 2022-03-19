@@ -74,10 +74,11 @@
   margin: 0px;
   font-family: noori;
   font-size: 25px;
+  font-weight: bold;
   height: fit-content;
   color: rgb(43, 42, 42);
   background-color: rgb(179, 197, 224);
-  border-radius: 100px;
+  border-radius: 10px;
   padding-left: 20px;
   padding-right: 20px;
 }

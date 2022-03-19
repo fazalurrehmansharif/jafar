@@ -151,6 +151,11 @@ export const findWords2 = (huruf, maxCount, onResult) => {
           outputArr = [];
         }
       }
+      for (let index = 0; index < result.length; index++) {
+        if (result[index][0].value.length == 1) {
+          result.splice(index, 1);
+        }
+      }
     })
     .finally(() => {
       onResult(result);
@@ -275,4 +280,34 @@ function chunkify(a, n, balanced) {
   }
 
   return out;
+}
+
+export function replacer(key, value) {
+  if (value instanceof Map) {
+    return {
+      dataType: "Map",
+      value: Array.from(value.entries()), // or with spread: value: [...value]
+    };
+  } else {
+    return value;
+  }
+}
+
+export function reviver(key, value) {
+  if (typeof value === "object" && value !== null) {
+    if (value.dataType === "Map") {
+      return new Map(value.value);
+    }
+  }
+  return value;
+}
+
+export function checkIfTranslationExist(word, translations) {
+  for (let index = 0; index < translations.length; index++) {
+    var element = translations[index];
+    if (element.word === word) {
+      return true;
+    }
+  }
+  return false;
 }

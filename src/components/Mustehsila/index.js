@@ -2,20 +2,25 @@
 import Satar from "components/Satar";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { checkIfTranslationExist, reviver } from "../../engines/azaaf";
 import cheerio from "cheerio";
-import { performMS1, performMS2, performQeemat } from "state/azaafSlice";
+import {
+  performMS1,
+  performMS2,
+  performQeemat,
+  updateTranslations,
+} from "state/azaafSlice";
 import Select from "react-select";
 import "./Mustehsila.css";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Mustehsila = () => {
-  const { huruf, qeemat, muakharSadar1, muakharSadar2, results } = useSelector(
-    (state) => state
-  );
+  const { huruf, qeemat, muakharSadar1, muakharSadar2, results, translations } =
+    useSelector((state) => state);
 
   const dispatch = useDispatch();
-
-  const translationMap = new Map();
 
   useEffect(() => {
     dispatch(performQeemat(huruf));
@@ -29,21 +34,25 @@ const Mustehsila = () => {
     dispatch(performMS2(muakharSadar1));
   }, [muakharSadar1]);
 
-  const getDataFromUrl = (word) => {
-    if (translationMap.has(word)) {
-      console.log(translationMap.get(word));
-    } else {
+  const notify = (error) => toast(error.message);
+
+  const getDataFromUrl = (wordx) => {
+    if (!checkIfTranslationExist(wordx, translations)) {
       axios
         .get(
           `https://cors-anywhere.herokuapp.com/http://udb.gov.pk/result.php?search=` +
-            word
+            wordx
         )
         .then((res) => {
           const $ = cheerio.load(res.data);
           const data = $(".para");
           const translations = data.text().split(" ، ");
-          translationMap.set(word, translations);
-          console.log(translations);
+          dispatch(
+            updateTranslations({ word: wordx, translation: translations })
+          );
+        })
+        .catch((error) => {
+          notify(error);
         });
     }
   };
