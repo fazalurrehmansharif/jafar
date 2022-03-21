@@ -7,10 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 // @ts-ignore
 import {
+  setKhalis,
+  performBast,
   setLoading,
   setChunkLength,
   setResults,
   resetTranslations,
+  performKhalis,
 } from "state/azaafSlice";
 import "./App.css";
 
@@ -18,7 +21,9 @@ function App() {
   const loadingMesg = "Calculating please wait";
 
   // @ts-ignore
-  const { loading, chunkLength, muakharSadar2 } = useSelector((state) => state);
+  const { loading, chunkLength, muakharSadar2, isKhalis } = useSelector(
+    (state) => state
+  );
   // @ts-ignore
   const dispatch = useDispatch();
 
@@ -62,6 +67,23 @@ function App() {
             >
               جواب
             </button>
+          </div>
+          <div className="options-container">
+            <p className="option-title">خالص</p>
+            <label className="switch">
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  dispatch(setKhalis(e.target.checked));
+                  if (e.target.checked) {
+                    dispatch(performKhalis());
+                  } else {
+                    dispatch(performBast());
+                  }
+                }}
+              ></input>
+              <span className="slider round"></span>
+            </label>
           </div>
         </nav>
         <Mustehsila></Mustehsila>

@@ -237,8 +237,8 @@ function checkWordInTokens(word, tokens, wordFound) {
       var count = 0;
       for (let i = 0; i < word.length; i++) {
         if (
-          word.charAt(i) == element.charAt(i) ||
-          getAlternateLetter(word.charAt(i)) == element.charAt(i)
+          word.charAt(i) === element.charAt(i) ||
+          getAlternateLetter(word.charAt(i)) === element.charAt(i)
         ) {
           count++;
         }

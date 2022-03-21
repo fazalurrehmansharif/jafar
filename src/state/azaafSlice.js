@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 // @ts-ignore
-import { khalis, muakharSadar, qeemat, replacer } from "engines/azaaf";
+import { bastHurfi, khalis, muakharSadar, qeemat } from "engines/azaaf";
 
 export const azaafSlice = createSlice({
   name: "azaaf",
   initialState: {
     loading: false,
+    isKhalis: false,
+    sawalStr: "",
     huruf: [],
     qeemat: [],
     muakharSadar1: [],
@@ -15,11 +17,20 @@ export const azaafSlice = createSlice({
     translations: [],
   },
   reducers: {
+    setSawalStr(state, action) {
+      state.sawalStr = action.payload;
+    },
+    setKhalis(state, action) {
+      state.isKhalis = !state.isKhalis;
+    },
     setLoading(state, action) {
       state.loading = !state.loading;
     },
     performKhalis(state, action) {
-      state.huruf = khalis(action.payload);
+      state.huruf = khalis(bastHurfi(state.sawalStr));
+    },
+    performBast(state, action) {
+      state.huruf = bastHurfi(state.sawalStr);
     },
     performQeemat(state, action) {
       state.qeemat = qeemat(action.payload);
@@ -48,6 +59,9 @@ export const azaafSlice = createSlice({
 // Action creators are generated for each case reducer function
 // @ts-ignore
 export const {
+  setSawalStr,
+  setKhalis,
+  performBast,
   performKhalis,
   performQeemat,
   performMS1,
