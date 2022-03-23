@@ -13,7 +13,7 @@ const Sawal = (props) => {
     <TextField
       width={1500}
       height={70}
-      style={{ marginTop: 20 }}
+      style={{ marginTop: 20, marginRight: 0 }}
       inputStyles={{
         fontFamily: "noori-kashida",
         fontSize: "40px",

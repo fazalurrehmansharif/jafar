@@ -7,6 +7,7 @@ const Hurf = (props) => {
     <Card
       width={55}
       height={55}
+      minWidth={55}
       style={{
         margin: 5,
         justifyContent: "center",

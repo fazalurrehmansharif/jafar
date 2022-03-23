@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 100%;
   height: fit-content;
+  overflow-x: scroll;
 }
 
 .react-select {
