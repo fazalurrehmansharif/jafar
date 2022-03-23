@@ -1,10 +1,12 @@
 import Mustehsila from "components/Mustehsila";
 import Translations from "components/Translation";
 import { findWords2 } from "engines/azaaf";
-import React from "react";
+import React, { useEffect } from "react";
 import LoadingOverlay from "react-loading-overlay";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
+import { overrideThemeVariables } from "ui-neumorphism";
+import "ui-neumorphism/dist/index.css";
 // @ts-ignore
 import {
   setKhalis,
@@ -19,6 +21,20 @@ import "./App.css";
 
 function App() {
   const loadingMesg = "Calculating please wait";
+
+  useEffect(() => {
+    overrideThemeVariables({
+      "--light-bg": "#e0e0e0",
+      "--light-bg-dark-shadow": "#bebebe",
+      "--light-bg-light-shadow": "#ffffff",
+      "--dark-bg": "#292E35",
+      "--dark-bg-dark-shadow": "#21252a",
+      "--dark-bg-light-shadow": "#313740",
+      "--primary": "#8672FB",
+      "--primary-dark": "#4526f9",
+      "--primary-light": "#c7befd",
+    });
+  });
 
   // @ts-ignore
   const { loading, chunkLength, muakharSadar2, isKhalis } = useSelector(

@@ -1,18 +1,20 @@
 .satar {
   display: flex;
   direction: rtl;
-  margin-left: 10px;
+  align-items: center;
+  height: fit-content;
 }
 
 .satar-body {
   display: flex;
   width: 100%;
+  height: fit-content;
 }
 
 .satar-name {
-  font-size: 40px;
+  font-size: 30px;
   width: 130px;
-  height: 60px;
+  height: 40px;
   font-family: noori;
   padding-right: 20px;
   align-self: center;
