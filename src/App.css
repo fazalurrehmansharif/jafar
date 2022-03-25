@@ -2,7 +2,7 @@
   display: grid;
   justify-content: start;
   grid-template-columns: 100%;
-  grid-template-rows: 110px 600px 600px;
+  grid-template-rows: 110px 700px 600px;
   row-gap: 10px;
   direction: rtl;
   margin-right: 20px;

@@ -2,7 +2,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 100%;
-  height: fit-content;
+  height: auto;
   overflow-x: scroll;
 }
 
@@ -16,9 +16,10 @@
 
 .result-holder {
   display: flex;
-  margin-right: 140px;
+  margin-right: 125px;
   margin-top: 5px;
   margin-left: 10px;
+  margin-bottom: 20px;
 }
 
 .options {

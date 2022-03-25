@@ -18,8 +18,9 @@ import {
 import Select from "react-select";
 import "./Mustehsila.css";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Chip, Card } from "ui-neumorphism";
 
 const Mustehsila = () => {
   const { huruf, qeemat, muakharSadar1, muakharSadar2, results, translations } =
@@ -90,19 +91,46 @@ const Mustehsila = () => {
         satarName="موخر صدر "
       ></Satar>
       <div className="result-holder">
-        {results.map((value, index) => {
-          return (
-            <Select
-              className="react-select"
-              options={value}
-              key={JSON.stringify(value)}
-              defaultValue={{ label: "Select Word", value: 0 }}
-              onChange={(e) => {
-                getDataFromUrl(e.value, index);
-              }}
-            />
-          );
-        })}
+        {results[0].length > 0 ? (
+          results.map((wordsArr, keyArr) => {
+            return (
+              <Card
+                key={JSON.stringify(keyArr)}
+                width={300}
+                minWidth={300}
+                minHeight={250}
+                height={250}
+                style={{
+                  marginLeft: "10px",
+                  padding: "10px",
+                  overflowY: "scroll",
+                }}
+              >
+                {wordsArr.map((word, keyWord) => {
+                  return (
+                    <Chip
+                      key={JSON.stringify(keyWord)}
+                      style={{
+                        fontFamily: "noori",
+                        fontSize: "30px",
+                        marginLeft: "10px",
+                        marginBottom: "10px",
+                        height: "auto",
+                        width: "auto",
+                      }}
+                      action={<p>{word.value}</p>}
+                      onAction={(action) => {
+                        getDataFromUrl(action.target.innerText, keyArr);
+                      }}
+                    ></Chip>
+                  );
+                })}
+              </Card>
+            );
+          })
+        ) : (
+          <div style={{ height: "250px" }}></div>
+        )}
       </div>
     </div>
   );

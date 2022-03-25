@@ -11,7 +11,7 @@ const Sawal = (props) => {
 
   return (
     <TextField
-      width={1500}
+      width={1740}
       height={70}
       style={{ marginTop: 20, marginRight: 0 }}
       inputStyles={{
