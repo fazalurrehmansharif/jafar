@@ -9,7 +9,7 @@ const Hurf = (props) => {
       height={55}
       minWidth={55}
       style={{
-        margin: 5,
+        marginLeft: 15,
         justifyContent: "center",
         fontFamily: "noori",
         fontSize: 30,

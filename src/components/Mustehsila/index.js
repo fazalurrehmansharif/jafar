@@ -131,6 +131,8 @@ const Mustehsila = () => {
                         height: "auto",
                         width: "auto",
                       }}
+                      flat={true}
+                      bordered={true}
                       dark={selectedResultIds[keyArr] == keyWord}
                       action={<p>{word.value}</p>}
                       onAction={(action) => {
