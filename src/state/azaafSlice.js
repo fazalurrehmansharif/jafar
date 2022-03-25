@@ -15,6 +15,7 @@ export const azaafSlice = createSlice({
     chunkLength: 3,
     results: [[]],
     translations: [],
+    selectedResultIds: [],
   },
   reducers: {
     setSawalStr(state, action) {
@@ -53,6 +54,9 @@ export const azaafSlice = createSlice({
     resetTranslations(state, action) {
       state.translations = action.payload;
     },
+    setSelectedResultId(state, action) {
+      state.selectedResultIds[action.payload.position] = action.payload.id;
+    },
   },
 });
 
@@ -71,6 +75,7 @@ export const {
   setResults,
   updateTranslations,
   resetTranslations,
+  setSelectedResultId,
 } = azaafSlice.actions;
 
 export default azaafSlice.reducer;

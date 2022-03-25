@@ -4,17 +4,17 @@ import TagsBox from "./TagsBox";
 import "./Translations.css";
 import { useSelector } from "react-redux";
 import { getOnSameIndex } from "engines/azaaf";
+import { Card } from "ui-neumorphism";
 const Translations = () => {
   const { translations } = useSelector((state) => state);
 
   return (
     <div className="translations-body">
-      <p className="translations-title">ترجمہ</p>
-      <div className="tags-box-root">
+      <Card className="tags-box-root">
         {getOnSameIndex(translations).map((value, index) => {
           return <TagsBox key={index} values={value}></TagsBox>;
         })}
-      </div>
+      </Card>
     </div>
   );
 };

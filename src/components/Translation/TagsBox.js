@@ -1,11 +1,14 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
+import { Card, H4 } from "ui-neumorphism";
 import "./Translations.css";
 const TagsBox = (props) => {
   const { values } = props;
   return (
     <div className="tags-box-container">
-      <p className="tags-box-title">{values.word}</p>
+      <Card style={{ width: "98%" }}>
+        <H4 style={{ textAlign: "center" }}>{values.word}</H4>
+      </Card>
       <div className="tags-container">
         {values.translation.map((value, index) => {
           return (

@@ -14,6 +14,7 @@ import {
   performQeemat,
   updateTranslations,
   resetTranslations,
+  setSelectedResultId,
 } from "state/azaafSlice";
 import Select from "react-select";
 import "./Mustehsila.css";
@@ -23,10 +24,22 @@ import "react-toastify/dist/ReactToastify.css";
 import { Chip, Card } from "ui-neumorphism";
 
 const Mustehsila = () => {
-  const { huruf, qeemat, muakharSadar1, muakharSadar2, results, translations } =
-    useSelector((state) => state);
+  const {
+    huruf,
+    qeemat,
+    muakharSadar1,
+    muakharSadar2,
+    results,
+    translations,
+    selectedResultIds,
+  } = useSelector((state) => state);
 
   const dispatch = useDispatch();
+  var showSelection = false;
+
+  useEffect(() => {
+    showSelection = selectedResultIds ? true : false;
+  }, [selectedResultIds]);
 
   useEffect(() => {
     dispatch(performQeemat(huruf));
@@ -118,8 +131,15 @@ const Mustehsila = () => {
                         height: "auto",
                         width: "auto",
                       }}
+                      dark={selectedResultIds[keyArr] == keyWord}
                       action={<p>{word.value}</p>}
                       onAction={(action) => {
+                        dispatch(
+                          setSelectedResultId({
+                            position: keyArr,
+                            id: keyWord,
+                          })
+                        );
                         getDataFromUrl(action.target.innerText, keyArr);
                       }}
                     ></Chip>
